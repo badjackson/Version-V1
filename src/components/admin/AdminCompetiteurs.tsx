@@ -429,7 +429,7 @@ export default function AdminCompetiteurs() {
       reader.onload = (e) => {
         const result = e.target?.result as string;
         setFormData(prev => ({ ...prev, photo: result }));
-        setPhotoPreview(result);
+        status: 'active' as 'active' | 'inactive'
       };
       reader.readAsDataURL(file);
     }
