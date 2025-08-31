@@ -36,14 +36,31 @@ interface CalculatedCompetitor {
 }
 
 export default function AdminClassementGeneral() {
-  const { competitors, hourlyEntries, bigCatches, isOnline } = useFirestore();
+  const { competitors, hourlyEntries, bigCatches } = useFirestore();
   const [searchQuery, setSearchQuery] = useState('');
   const [sortField, setSortField] = useState<string>('classementGeneral');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [sectorFilter, setSectorFilter] = useState<string>('all');
   const [filterType, setFilterType] = useState<string>('all');
+  const [isOnline, setIsOnline] = useState(true);
 
   const sectors = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+  // Set initial online status
+  useEffect(() => {
+    setIsOnline(navigator.onLine);
+    
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+    
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+    
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
 
   // Calculate live data for all competitors
   const calculatedCompetitors = useMemo(() => {
