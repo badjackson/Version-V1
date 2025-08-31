@@ -282,8 +282,8 @@ export default function AdminGrossePrise() {
       competitorId: selectedCompetitor.id,
       boxNumber: selectedCompetitor.boxNumber,
       biggestCatch: parseInt(biggestCatch),
-      status: isOnlineSimulation ? 'locked_admin' : 'offline_admin',
-      source: 'Admin',
+      status: (isOnlineSimulation ? 'locked_admin' : 'offline_admin') as 'error' | 'empty' | 'in_progress' | 'locked_judge' | 'locked_admin' | 'offline_judge' | 'offline_admin',
+      source: 'Admin' as 'Judge' | 'Admin',
       updatedBy: currentUser?.username || 'admin'
     };
 
