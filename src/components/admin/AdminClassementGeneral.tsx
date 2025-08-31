@@ -88,9 +88,11 @@ export default function AdminClassementGeneral() {
             nbPrisesGlobal += entry.fishCount;
             poidsTotal += entry.totalWeight;
             
-            const entryDate = entry.timestamp?.toDate ? entry.timestamp.toDate() : new Date(entry.timestamp);
-            if (entryDate && (!lastValidEntry || entryDate > lastValidEntry)) {
-              lastValidEntry = entryDate;
+            if (entry.timestamp) {
+              const entryDate = entry.timestamp?.toDate ? entry.timestamp.toDate() : new Date();
+              if (!lastValidEntry || entryDate > lastValidEntry) {
+                lastValidEntry = entryDate;
+              }
             }
           });
         }
