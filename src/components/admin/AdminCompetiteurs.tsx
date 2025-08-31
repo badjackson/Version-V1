@@ -355,7 +355,7 @@ export default function AdminCompetiteurs() {
       fullName: formData.fullName,
       equipe: formData.equipe,
       photo: formData.photo || `https://images.pexels.com/photos/${1000000 + Math.floor(Math.random() * 1000000)}/pexels-photo.jpeg?auto=compress&cs=tinysrgb&w=150&h=150`,
-      status: 'active'
+      status: 'active' as 'active' | 'inactive'
     };
 
     try {
