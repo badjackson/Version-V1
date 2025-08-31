@@ -281,7 +281,10 @@ export default function AdminJuges() {
   };
 
   const validateForm = async () => {
-    const newErrors = FirebaseAuthAdmin.validateJudgeData(formData, isEditing, selectedJudgeId || undefined);
+    const newErrors = FirebaseAuthAdmin.validateJudgeData({
+      ...formData,
+      status: 'active'
+    }, isEditing, selectedJudgeId || undefined);
 
     // Check email availability for new judges or email changes
     if (formData.email && (!isEditing || (selectedJudge && selectedJudge.email !== formData.email))) {
