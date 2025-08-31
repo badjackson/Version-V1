@@ -200,7 +200,7 @@ export default function AdminCalculsLive() {
           fullName: comp.name,
           equipe: comp.equipe,
           photo: firestoreCompetitors.find(c => c.id === comp.id)?.photo || '',
-          status: 'active',
+          status: 'active' as 'active' | 'inactive',
           // Add calculated fields
           nbPrisesGlobal: comp.nbPrisesGlobal,
           poidsTotal: comp.poidsTotal,
