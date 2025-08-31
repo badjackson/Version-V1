@@ -215,7 +215,10 @@ export default function AdminCompetiteurs() {
         };
         
         try {
-          await saveCompetitor(competitorData);
+          await saveCompetitor({
+            ...competitorData,
+            status: 'active' as 'active' | 'inactive'
+          });
         } catch (error) {
           console.error('Error saving competitor:', error);
         }
